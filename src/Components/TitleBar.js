@@ -10,7 +10,7 @@ export default function TitleBar() {
           className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
         >
           <svg className="bi me-2" width="40" height="32"></svg>
-          <span className="fs-4 text-primary">Clairco</span>
+          <span className="fs-1 text-primary">Clairco</span>
         </Link>
       </header>
     </div>
