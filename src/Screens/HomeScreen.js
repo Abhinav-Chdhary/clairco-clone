@@ -10,7 +10,7 @@ export default function HomeScreen() {
       >
         LOGIN
       </div>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-evenly">
         <Link
           className="btn btn-primary btn-lg m-5"
           to="/adminLogin"
