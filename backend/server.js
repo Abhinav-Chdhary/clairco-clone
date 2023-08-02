@@ -17,8 +17,8 @@ app.use((req, res, next) => {
   );
   next();
 });
-
-app.use("/api", require("./Routes/GetAdminUsers"));
+app.use(express.json());
+app.use("/api", require("./Routes/AdminLogin"));
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
