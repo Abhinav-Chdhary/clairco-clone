@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NewCustomer() {
+  const navigate = useNavigate();
+  const handleDoneClick = () => {
+    navigate("/adminDashboard");
+  };
+  const handleCreateBuildingClick = () => {
+    navigate("/adminDashboard/newBuildingForm");
+  };
   return (
     <div className="container">
       <form>
@@ -33,10 +41,18 @@ export default function NewCustomer() {
         </div>
 
         <div className="d-inline">
-          <button type="submit" className="m-1 btn btn-primary">
+          <button
+            type="submit"
+            className="m-1 btn btn-primary"
+            onClick={handleDoneClick}
+          >
             Done
           </button>
-          <button type="button" class="btn btn-success m-1">
+          <button
+            type="button"
+            class="btn btn-success m-1"
+            onClick={handleCreateBuildingClick}
+          >
             Create Building
             <svg
               xmlns="http://www.w3.org/2000/svg"
