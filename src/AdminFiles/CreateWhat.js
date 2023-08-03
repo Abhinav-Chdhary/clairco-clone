@@ -7,19 +7,19 @@ export default function CreateWhat() {
       <div className="zoom shadow-lg p-3 mb-5 bg-body rounded d-flex flex-column border text-center rounded">
         <Link
           className="btn btn-primary btn-lg m-5"
-          to="/adminLogin"
+          to="/newBuildingForm"
           role="button"
         >
           New Property
         </Link>
         <span className="text-decoration-underline">
-          For existing customers only
+          For existing customers only!
         </span>
       </div>
       <div className="zoom shadow-lg p-3 mb-5 bg-body rounded border text-center rounded">
         <Link
           className="btn btn-primary btn-lg m-5 "
-          to="/customerLogin"
+          to="/newCustomerForm"
           role="button"
         >
           New Customer
