@@ -32,7 +32,7 @@ export default function AdminNavbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/createWhat">
+                <Link className="nav-link" to="/adminDashboard/createWhat">
                   Create+
                 </Link>
               </li>
