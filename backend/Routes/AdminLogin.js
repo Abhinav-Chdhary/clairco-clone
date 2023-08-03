@@ -3,6 +3,8 @@ const router = express.Router();
 const AdminUser = require("../Models/AdminUser");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = "tfuhtlpzhiopuhchukaopzdlizpalpzn";
 
 router.post(
   "/adminUsersLogin",
@@ -36,8 +38,13 @@ router.post(
       } */
       if (!(userData.password === req.body.password))
         return res.status(401).json({ error: "Incorrect credentials" });
-
-      return res.json({ success: true });
+      const data = {
+        adminUser: {
+          id: userData.id,
+        },
+      };
+      const authToken = jwt.sign(data, JWT_SECRET);
+      return res.json({ success: true, authToken: authToken });
     } catch (err) {
       console.log(err);
       res.status(500).json({ error: "Server error" });

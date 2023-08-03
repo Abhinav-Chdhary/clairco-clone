@@ -26,9 +26,9 @@ export default function AdminLogin() {
 
     if (!json.success) alert("Enter Valid Credentials");
     else {
-      //localStorage.setItem("authToken", json.authToken);
+      localStorage.setItem("adminAuthToken", json.authToken);
       //console.log(localStorage.getItem("authToken"));
-      navigate("/");
+      navigate("/adminDashboard");
     }
   };
   const handleChange = (event) => {
