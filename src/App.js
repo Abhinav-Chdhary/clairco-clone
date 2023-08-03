@@ -4,12 +4,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeScreen from "./Screens/HomeScreen";
 import AdminLogin from "./Screens/AdminLogin";
 import CustomerLogin from "./Screens/CustomerLogin";
-import AdminDashboard from "./Screens/AdminDashboard";
+import AdminDashboard from "./AdminFiles/AdminDashboard";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-dark">
+      <div>
         <TitleBar />
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/adminDashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
