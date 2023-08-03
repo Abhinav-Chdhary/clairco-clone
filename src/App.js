@@ -31,17 +31,17 @@ function App() {
           />
           <Route
             exact
-            path="/createWhat"
+            path="/adminDashboard/createWhat"
             element={adminLoggedIn ? <CreateWhat /> : <HomeScreen />}
           />
           <Route
             exact
-            path="/newBuildingForm"
+            path="/adminDashboard/newBuildingForm"
             element={adminLoggedIn ? <NewBuilding /> : <HomeScreen />}
           />
           <Route
             exact
-            path="/newCustomerForm"
+            path="/adminDashboard/newCustomerForm"
             element={adminLoggedIn ? <NewCustomer /> : <HomeScreen />}
           />
           {/* CUSTOMER ROUTES */}
