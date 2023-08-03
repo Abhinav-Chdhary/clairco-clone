@@ -6,6 +6,7 @@ import AdminLogin from "./Screens/AdminLogin";
 import CustomerLogin from "./Screens/CustomerLogin";
 import AdminDashboard from "./AdminFiles/AdminDashboard";
 import Footer from "./Components/Footer";
+import CreateWhat from "./AdminFiles/CreateWhat";
 
 function App() {
   const adminLoggedIn = () => {
@@ -25,6 +26,11 @@ function App() {
             exact
             path="/adminDashboard"
             element={adminLoggedIn ? <AdminDashboard /> : <HomeScreen />}
+          />
+          <Route
+            exact
+            path="/createWhat"
+            element={adminLoggedIn ? <CreateWhat /> : <HomeScreen />}
           />
           {/* CUSTOMER ROUTES */}
         </Routes>
