@@ -7,7 +7,7 @@ export default function CreateWhat() {
       <div className="zoom shadow-lg p-3 mb-5 bg-body rounded d-flex flex-column border text-center rounded">
         <Link
           className="btn btn-primary btn-lg m-5"
-          to="/newBuildingForm"
+          to="/adminDashboard/newBuildingForm"
           role="button"
         >
           New Property
@@ -19,7 +19,7 @@ export default function CreateWhat() {
       <div className="zoom shadow-lg p-3 mb-5 bg-body rounded border text-center rounded">
         <Link
           className="btn btn-primary btn-lg m-5 "
-          to="/newCustomerForm"
+          to="/adminDashboard/newCustomerForm"
           role="button"
         >
           New Customer
