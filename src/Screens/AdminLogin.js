@@ -1,13 +1,35 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
   const [credentials, setcredentials] = useState({
     email: "",
     password: "",
   });
-  const handleSubmit = (event) => {
-    console.log(credentials.email + " " + credentials.password);
+  let navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch("http://localhost:5000/api/adminUsersLogin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+
+    const json = await response.json();
+    console.log(json);
+
+    if (!json.success) alert("Enter Valid Credentials");
+    else {
+      //localStorage.setItem("authToken", json.authToken);
+      //console.log(localStorage.getItem("authToken"));
+      navigate("/");
+    }
   };
   const handleChange = (event) => {
     setcredentials({ ...credentials, [event.target.name]: event.target.value });
