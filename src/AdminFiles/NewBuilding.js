@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
 export default function NewBuilding() {
+  const [deviceEnabled, setDeviceEnabled] = useState(false);
+  const handleDeviceButton = () => {
+    setDeviceEnabled(!deviceEnabled);
+  };
   return (
     <div className="container">
       <form>
@@ -39,82 +43,93 @@ export default function NewBuilding() {
           </label>
           <input type="text" className="form-control" />
         </div>
-        <div class="form-check mb-2">
+        <div class="form-check mb-2 d-flex">
           <label class="form-check-label" for="flexCheckChecked">
-            Device
+            Has Device?
           </label>
           <input
-            class="form-check-input"
+            class="form-check-input float-end ms-2"
             type="checkbox"
             value=""
             id="flexCheckChecked"
+            onClick={handleDeviceButton}
           />
         </div>
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="PM2.5">
-            PM 2.5
-          </label>
-          <input
-            class="form-check-input float-end"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-          />
-        </div>
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="PM10">
-            PM 10
-          </label>
-          <input
-            class="form-check-input float-end"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-          />
-        </div>
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="CO2">
-            CO<sub>2</sub>
-          </label>
-          <input
-            class="form-check-input float-end"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-          />
-        </div>
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="TVOC">
-            TVOC
-          </label>
-          <input
-            class="form-check-input float-end"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-          />
-        </div>
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="TVOC">
-            Temperature
-          </label>
-          <input
-            class="form-check-input float-end"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-          />
-        </div>
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="TVOC">
-            Humidity
-          </label>
-          <input
-            class="form-check-input float-end"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-          />
+        <div>
+          {deviceEnabled ? (
+            <div className="d-flex flex-wrap">
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="PM2.5">
+                  PM 2.5
+                </label>
+                <input
+                  class="form-check-input float-end ms-2"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+              </div>
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="PM10">
+                  PM 10
+                </label>
+                <input
+                  class="form-check-input float-end ms-2"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+              </div>
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="CO2">
+                  CO<sub>2</sub>
+                </label>
+                <input
+                  class="form-check-input float-end ms-2"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+              </div>
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="TVOC">
+                  TVOC
+                </label>
+                <input
+                  class="form-check-input float-end ms-2"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+              </div>
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="temperature">
+                  Temperature
+                </label>
+                <input
+                  class="form-check-input float-end ms-2"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+              </div>
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="humidity">
+                  Humidity
+                </label>
+                <input
+                  class="form-check-input float-end ms-2"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="text-muted mb-2">
+              You can enable device to see configs available
+            </div>
+          )}
         </div>
 
         <div className="d-inline">
