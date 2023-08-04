@@ -17,7 +17,7 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <div>
+      <div style={{ marginTop: "8rem", marginBottom: "6rem" }}>
         <TitleBar />
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
