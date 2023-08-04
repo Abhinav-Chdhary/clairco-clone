@@ -7,8 +7,8 @@ export default function NewBuilding() {
   const initialBuildingDetails = {
     CompanyName: "",
     BuildingName: "",
-    Latitude: 37.7749,
-    Longitude: -122.4194,
+    Latitude: "",
+    Longitude: "",
     Address: "",
     Area: "",
     HasDevice: false,
@@ -58,6 +58,7 @@ export default function NewBuilding() {
           <input
             type="text"
             className="form-control"
+            placeholder="Clairco"
             name="CompanyName"
             value={buidlingDetails.CompanyName}
             onChange={onBuildingDetailsChange}
@@ -70,6 +71,7 @@ export default function NewBuilding() {
           <input
             type="text"
             className="form-control"
+            placeholder="clairco-1"
             name="BuildingName"
             value={buidlingDetails.BuildingName}
             onChange={onBuildingDetailsChange}
@@ -83,6 +85,7 @@ export default function NewBuilding() {
           <input
             type="text"
             className="form-control"
+            placeholder="37.7749"
             name="Latitude"
             value={buidlingDetails.Latitude}
             onChange={onBuildingDetailsChange}
@@ -93,6 +96,7 @@ export default function NewBuilding() {
           <input
             type="text"
             className="form-control"
+            placeholder="-122.4194"
             name="Longitude"
             value={buidlingDetails.Longitude}
             onChange={onBuildingDetailsChange}
@@ -105,6 +109,7 @@ export default function NewBuilding() {
           <textarea
             type="text"
             className="form-control"
+            placeholder="42, 22nd Main"
             name="Address"
             value={buidlingDetails.Address}
             onChange={onBuildingDetailsChange}
@@ -117,6 +122,7 @@ export default function NewBuilding() {
           <input
             type="text"
             className="form-control"
+            placeholder="Jakkasandra"
             name="Area"
             value={buidlingDetails.Area}
             onChange={onBuildingDetailsChange}
