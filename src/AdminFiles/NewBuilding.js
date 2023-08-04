@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NewBuilding() {
+  let navigate = useNavigate();
   //for: the details of the building
   const initialBuildingDetails = {
     CompanyName: "",
@@ -30,7 +32,14 @@ export default function NewBuilding() {
   const onSubmitForm = (event) => {
     event.preventDefault();
     console.log(JSON.stringify(buidlingDetails, null, 2));
-    //setbuidlingDetails(initialBuildingDetails);
+    navigate("/adminDashboard");
+  };
+  //If want to add Another building
+  const handleAnotherBuidldingClick = (event) => {
+    event.preventDefault();
+    onSubmitForm(event);
+    setbuidlingDetails(initialBuildingDetails);
+    navigate("/adminDashboard/newBuildingForm");
   };
   //for button clicks
   const onClickHandler = (e) => {
@@ -225,7 +234,11 @@ export default function NewBuilding() {
           <button type="submit" className="m-1 btn btn-primary">
             Done
           </button>
-          <button type="submit" className="btn btn-success m-1">
+          <button
+            type="submit"
+            className="btn btn-success m-1"
+            onClick={handleAnotherBuidldingClick}
+          >
             Create One More Building
             <svg
               xmlns="http://www.w3.org/2000/svg"
