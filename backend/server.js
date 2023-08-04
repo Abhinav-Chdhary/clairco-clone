@@ -17,13 +17,12 @@ app.use((req, res, next) => {
   );
   next();
 });
+
 app.use(express.json());
-//for admin login
-app.use("/api", require("./Routes/AdminLogin"));
 //for creating new Customer
 app.use("/api", require("./Routes/AdminNewCustomer"));
-//for creating new Buidlding
-app.use("/api", require("./Routes/AdminNewBuilding"));
+//for admin login
+app.use("/api", require("./Routes/AdminLogin"));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
