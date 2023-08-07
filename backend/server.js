@@ -21,6 +21,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 //for creating new Customer
 app.use("/api", require("./Routes/AdminNewCustomer"));
+//for new Building
+app.use("/api", require("./Routes/AdminNewBuilding"));
 //for admin login
 app.use("/api", require("./Routes/AdminLogin"));
 
