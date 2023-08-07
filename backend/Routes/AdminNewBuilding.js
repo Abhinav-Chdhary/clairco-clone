@@ -14,7 +14,6 @@ router.post(
     body("area").isLength({ min: 5 }),
   ],
   async (req, res) => {
-    console.log("this works");
     //validate
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
