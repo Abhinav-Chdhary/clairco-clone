@@ -29,7 +29,9 @@ const mongoDB = async () => {
     global.customers = fetched_customer_users;
 
     //for changes in buildings
-    const changeStreamBuilding = mongoose.connection("buildings").watch();
+    const changeStreamBuilding = mongoose.connection
+      .collection("buildings")
+      .watch();
     changeStreamBuilding.on("change", async (change) => {
       if (change) {
         const fetched_buildings = await mongoose.connection
