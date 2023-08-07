@@ -7,8 +7,7 @@ export default function NewBuilding() {
   const initialBuildingDetails = {
     CompanyName: "",
     BuildingName: "",
-    Latitude: "",
-    Longitude: "",
+    Geolocation: "",
     Address: "",
     Area: "",
     HasDevice: false,
@@ -19,31 +18,55 @@ export default function NewBuilding() {
     Temperature: false,
     Humidity: false,
   };
-  const [buidlingDetails, setbuidlingDetails] = useState(
+  const [buildingDetails, setbuildingDetails] = useState(
     initialBuildingDetails
   );
 
   const onBuildingDetailsChange = (event) => {
-    setbuidlingDetails({
-      ...buidlingDetails,
+    setbuildingDetails({
+      ...buildingDetails,
       [event.target.name]: event.target.value,
     });
   };
-  const onSubmitForm = (event) => {
+  const onSubmitForm = async (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(buidlingDetails, null, 2));
-    navigate("/adminDashboard");
+
+    const response = await fetch("http://localhost:5000/api/adminNewBuilding", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        company: buildingDetails.CompanyName,
+        building: buildingDetails.BuildingName,
+        geolocation: buildingDetails.Geolocation,
+        address: buildingDetails.Address,
+        area: buildingDetails.Area,
+        has_device: buildingDetails.HasDevice,
+        pm_2_5: buildingDetails.PM_2_5,
+        pm_10: buildingDetails.PM_10,
+        co2: buildingDetails.CO2,
+        tvoc: buildingDetails.TVOC,
+        temperature: buildingDetails.Temperature,
+        humidity: buildingDetails.Humidity,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+
+    //after all
+    //navigate("/adminDashboard");
   };
   //If want to add Another building
   const handleAnotherBuidldingClick = (event) => {
     event.preventDefault();
     onSubmitForm(event);
-    setbuidlingDetails(initialBuildingDetails);
+    setbuildingDetails(initialBuildingDetails);
     navigate("/adminDashboard/newBuildingForm");
   };
   //for button clicks
   const onClickHandler = (e) => {
-    setbuidlingDetails((prevDetails) => ({
+    setbuildingDetails((prevDetails) => ({
       ...prevDetails,
       [e.target.name]: !prevDetails[e.target.value],
     }));
@@ -60,7 +83,7 @@ export default function NewBuilding() {
             className="form-control"
             placeholder="Clairco"
             name="CompanyName"
-            value={buidlingDetails.CompanyName}
+            value={buildingDetails.CompanyName}
             onChange={onBuildingDetailsChange}
           />
         </div>
@@ -73,32 +96,20 @@ export default function NewBuilding() {
             className="form-control"
             placeholder="clairco-1"
             name="BuildingName"
-            value={buidlingDetails.BuildingName}
+            value={buildingDetails.BuildingName}
             onChange={onBuildingDetailsChange}
           />
         </div>
-        <span>Geolocation:</span>
         <div className="mb-3 ms-3">
-          <label htmlFor="Latitude" className="form-label">
-            Latitude
+          <label htmlFor="Geolocation" className="form-label">
+            Geolocation
           </label>
           <input
             type="text"
             className="form-control"
-            placeholder="37.7749"
-            name="Latitude"
-            value={buidlingDetails.Latitude}
-            onChange={onBuildingDetailsChange}
-          />
-          <label htmlFor="Longitude" className="form-label">
-            Longitude
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="-122.4194"
-            name="Longitude"
-            value={buidlingDetails.Longitude}
+            placeholder="37.7749, 37.7749"
+            name="Geolocation"
+            value={buildingDetails.Geolocation}
             onChange={onBuildingDetailsChange}
           />
         </div>
@@ -111,7 +122,7 @@ export default function NewBuilding() {
             className="form-control"
             placeholder="42, 22nd Main"
             name="Address"
-            value={buidlingDetails.Address}
+            value={buildingDetails.Address}
             onChange={onBuildingDetailsChange}
           />
         </div>
@@ -124,7 +135,7 @@ export default function NewBuilding() {
             className="form-control"
             placeholder="Jakkasandra"
             name="Area"
-            value={buidlingDetails.Area}
+            value={buildingDetails.Area}
             onChange={onBuildingDetailsChange}
           />
         </div>
@@ -135,14 +146,14 @@ export default function NewBuilding() {
           <input
             className="form-check-input float-end ms-2"
             type="checkbox"
-            value={buidlingDetails.HasDevice}
+            value={buildingDetails.HasDevice}
             name="HasDevice"
             id="flexCheckChecked"
             onClick={onClickHandler}
           />
         </div>
         <div>
-          {buidlingDetails.HasDevice ? (
+          {buildingDetails.HasDevice ? (
             <div className="d-flex flex-wrap">
               <div className="form-check form-switch">
                 <label className="form-check-label" htmlFor="PM2.5">
@@ -154,7 +165,7 @@ export default function NewBuilding() {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   name="PM_2_5"
-                  value={buidlingDetails.PM_2_5}
+                  value={buildingDetails.PM_2_5}
                   onClick={onClickHandler}
                 />
               </div>
@@ -168,7 +179,7 @@ export default function NewBuilding() {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   name="PM_10"
-                  value={buidlingDetails.PM_10}
+                  value={buildingDetails.PM_10}
                   onClick={onClickHandler}
                 />
               </div>
@@ -182,7 +193,7 @@ export default function NewBuilding() {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   name="CO2"
-                  value={buidlingDetails.CO2}
+                  value={buildingDetails.CO2}
                   onClick={onClickHandler}
                 />
               </div>
@@ -196,7 +207,7 @@ export default function NewBuilding() {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   name="TVOC"
-                  value={buidlingDetails.TVOC}
+                  value={buildingDetails.TVOC}
                   onClick={onClickHandler}
                 />
               </div>
@@ -210,7 +221,7 @@ export default function NewBuilding() {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   name="Temperature"
-                  value={buidlingDetails.Temperature}
+                  value={buildingDetails.Temperature}
                   onClick={onClickHandler}
                 />
               </div>
@@ -224,7 +235,7 @@ export default function NewBuilding() {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   name="Humidity"
-                  value={buidlingDetails.Humidity}
+                  value={buildingDetails.Humidity}
                   onClick={onClickHandler}
                 />
               </div>
