@@ -9,6 +9,7 @@ import Footer from "./Components/Footer";
 import CreateWhat from "./AdminFiles/CreateWhat";
 import NewBuilding from "./AdminFiles/NewBuilding";
 import NewCustomer from "./AdminFiles/NewCustomer";
+import CompanyBuildings from "./AdminFiles/CompanyBuildings";
 
 function App() {
   const adminLoggedIn = () => {
@@ -43,6 +44,11 @@ function App() {
             exact
             path="/adminDashboard/newCustomerForm"
             element={adminLoggedIn ? <NewCustomer /> : <HomeScreen />}
+          />
+          <Route
+            exact
+            path="/adminDashboard/companyBuildings/:id"
+            element={adminLoggedIn ? <CompanyBuildings /> : <HomeScreen />}
           />
           {/* CUSTOMER ROUTES */}
         </Routes>
