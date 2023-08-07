@@ -8,6 +8,7 @@ export default function AdminDashboard() {
       {localStorage.getItem("adminAuthToken") ? (
         <div>
           <AdminHome />
+          {window.location.reload}
         </div>
       ) : (
         <div>{alert("You are not authorized")}</div>

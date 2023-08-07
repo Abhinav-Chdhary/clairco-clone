@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 
 export default function NewCustomer() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function NewCustomer() {
   const handleCreateBuildingClick = (event) => {
     event.preventDefault();
     handleDoneClick(event);
-    navigate("/adminDashboard/newBuildingForm");
+    //navigate("/adminDashboard/newBuildingForm");
   };
   return (
     <div className="container">
