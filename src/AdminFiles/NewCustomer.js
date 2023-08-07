@@ -18,9 +18,23 @@ export default function NewCustomer() {
       [event.target.name]: event.target.value,
     });
   };
-  const handleDoneClick = (event) => {
+  const handleDoneClick = async (event) => {
     event.preventDefault();
-    console.log(customerDetails);
+    const response = await fetch("http://localhost:5000/api/adminNewCustomer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        company: customerDetails.CompanyName,
+        email: customerDetails.Email,
+        password: customerDetails.Password,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (!json.success) console.log("ohh not working");
+    //after all go back to dashboard
     navigate("/adminDashboard");
   };
   const handleCreateBuildingClick = (event) => {
