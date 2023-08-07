@@ -20,13 +20,15 @@ export default function CompanyBuildings() {
   }, []);
 
   return (
-    <div className="m-5 text-danger">
+    <div className="m-5 text-primary fw-bold">
       {id}'s Buildings
       <div className="container">
         {buildings.length > 0 ? (
-          buildings.map((data) => {
-            return <div key={data._id}>{data.building}</div>;
-          })
+          buildings
+            .filter((item) => item.company === id)
+            .map((filterItems) => {
+              return <div key={filterItems._id}>{filterItems.building}</div>;
+            })
         ) : (
           <div>......</div>
         )}
