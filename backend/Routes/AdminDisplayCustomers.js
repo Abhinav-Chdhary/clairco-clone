@@ -8,7 +8,6 @@ router.post("/getCustomers", (req, res) => {
     console.error(error.message);
     res.send("Server Error");
   }
-  console.log("This works");
 });
 
 module.exports = router;
