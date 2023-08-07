@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminNavbar from "./AdminNavbar";
+import CustomerCard from "./CustomerCard";
 
 export default function AdminHome() {
   const [customers, setcustomers] = useState([]);
@@ -25,7 +26,11 @@ export default function AdminHome() {
       <div className="container">
         {customers !== [] ? (
           customers.map((data) => {
-            return <div key={data._id}>{data.company}</div>;
+            return (
+              <div key={data._id}>
+                <CustomerCard companyname={data.company} />
+              </div>
+            );
           })
         ) : (
           <div>.....</div>
