@@ -12,7 +12,7 @@ export default function AdminHome() {
       },
     });
     response = await response.json();
-    console.log(response);
+    //console.log(response);
     setcustomers(response);
   };
 
