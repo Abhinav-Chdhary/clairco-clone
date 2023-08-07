@@ -1,0 +1,14 @@
+const express = require("express");
+const router = express.Router();
+
+router.post("/getCustomers", (req, res) => {
+  try {
+    res.send(global.customers);
+  } catch (error) {
+    console.error(error.message);
+    res.send("Server Error");
+  }
+  console.log("This works");
+});
+
+module.exports = router;

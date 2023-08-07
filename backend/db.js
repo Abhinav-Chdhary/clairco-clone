@@ -5,11 +5,11 @@ const mongoURI =
 const mongoDB = async () => {
   try {
     await mongoose.connect(mongoURI);
-    const fetched_admin_users = await mongoose.connection
-      .collection("AdminUsers")
+    const fetched_customer_users = await mongoose.connection
+      .collection("customers")
       .find({})
       .toArray();
-    global.admin_users = fetched_admin_users;
+    global.customers = fetched_customer_users;
   } catch (error) {
     console.error(error);
   }
