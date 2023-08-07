@@ -55,14 +55,13 @@ export default function NewBuilding() {
     console.log(json);
 
     //after all
-    //navigate("/adminDashboard");
+    navigate("/adminDashboard/createWhat");
   };
   //If want to add Another building
   const handleAnotherBuidldingClick = (event) => {
     event.preventDefault();
     onSubmitForm(event);
     setbuildingDetails(initialBuildingDetails);
-    navigate("/adminDashboard/newBuildingForm");
   };
   //for button clicks
   const onClickHandler = (e) => {
