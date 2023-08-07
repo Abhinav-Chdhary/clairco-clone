@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AdminNavbar from "./AdminNavbar";
 
 export default function AdminHome() {
+  const [customers, setcustomers] = useState([]);
   const loadCustomers = async () => {
     let response = await fetch("http://localhost:5000/api/getCustomers", {
       method: "POST",
@@ -11,13 +12,25 @@ export default function AdminHome() {
     });
     response = await response.json();
     console.log(response);
+    setcustomers(response);
   };
+
   useEffect(() => {
     loadCustomers();
   }, []);
+
   return (
     <div>
       <AdminNavbar />
+      <div className="container">
+        {customers !== [] ? (
+          customers.map((data) => {
+            return <div key={data._id}>{data.company}</div>;
+          })
+        ) : (
+          <div>.....</div>
+        )}
+      </div>
     </div>
   );
 }
