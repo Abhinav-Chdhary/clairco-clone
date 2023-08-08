@@ -35,32 +35,38 @@ export default function BuildingModal({ openModal, ...buildingProps }) {
   //submit changes
   const saveChanges = async (event) => {
     event.preventDefault();
-    const response = await fetch(
-      "http://localhost:5000/api/adminUpdateBuilding",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: _data_id,
-          company: buildingDetails.company,
-          building: buildingDetails.building,
-          geolocation: buildingDetails.geolocation,
-          address: buildingDetails.address,
-          area: buildingDetails.area,
-          has_device: buildingDetails.has_device,
-          pm_2_5: buildingDetails.pm_2_5,
-          pm_10: buildingDetails.pm_10,
-          co2: buildingDetails.co2,
-          tvoc: buildingDetails.tvoc,
-          temperature: buildingDetails.temperature,
-          humidity: buildingDetails.humidity,
-        }),
-      }
-    );
-    const json = await response.json();
-    if (!json.success) console.log("ohh not working");
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/adminUpdateBuilding",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: _data_id,
+            company: buildingDetails.company,
+            building: buildingDetails.building,
+            geolocation: buildingDetails.geolocation,
+            address: buildingDetails.address,
+            area: buildingDetails.area,
+            has_device: buildingDetails.has_device,
+            pm_2_5: buildingDetails.pm_2_5,
+            pm_10: buildingDetails.pm_10,
+            co2: buildingDetails.co2,
+            tvoc: buildingDetails.tvoc,
+            temperature: buildingDetails.temperature,
+            humidity: buildingDetails.humidity,
+          }),
+        }
+      );
+
+      const json = await response.json();
+      console.log(json.success);
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
   };
 
   return (

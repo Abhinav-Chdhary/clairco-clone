@@ -8,10 +8,7 @@ router.put("/adminUpdateBuilding", async (req, res) => {
 
     const updatedBuilding = await Building.findByIdAndUpdate(
       id,
-      updatedDetails,
-      {
-        new: true, // Return the updated document
-      }
+      updatedDetails
     );
 
     if (!updatedBuilding) {
