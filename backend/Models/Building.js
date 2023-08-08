@@ -10,6 +10,7 @@ const BuildingSchema = new Schema({
   building: {
     type: String,
     required: true,
+    unique: true,
   },
   geolocation: {
     type: String,
