@@ -29,6 +29,8 @@ app.use("/api", require("./Routes/AdminLogin"));
 app.use("/api", require("./Routes/AdminDisplayCustomers"));
 //for buildings
 app.use("/api", require("./Routes/AdminDisplayBuildings"));
+//update buildings
+app.use("/api", require("./Routes/AdminUpdateBuilding"));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
