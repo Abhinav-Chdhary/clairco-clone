@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BuildingCard from "./BuildingCard";
 
 export default function CompanyBuildings() {
   const { id } = useParams();
@@ -27,7 +28,13 @@ export default function CompanyBuildings() {
           buildings
             .filter((item) => item.company === id)
             .map((filterItems) => {
-              return <div key={filterItems._id}>{filterItems.building}</div>;
+              return (
+                <div key={filterItems._id}>
+                  <BuildingCard
+                    buildingProps={[filterItems.company, filterItems.building]}
+                  />
+                </div>
+              );
             })
         ) : (
           <div>......</div>
