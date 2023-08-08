@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import BuildingModal from "./BuildingModal";
 
 export default function BuildingCard(props) {
-  let buildingProps = props.buildingProps;
+  let buildingname = props.building;
+  let building = props;
   const [modal, setModal] = useState(false);
   return (
     <div className="card m-1">
       <div className="card-body fw-bold fs-4">
-        {buildingProps[1]}
+        {buildingname}
         <button type="button" className="float-end btn btn-outline-danger">
           Delete
         </button>
@@ -20,9 +21,7 @@ export default function BuildingCard(props) {
         >
           Edit
         </button>
-        {modal && (
-          <BuildingModal openModal={setModal} buildingProps={buildingProps} />
-        )}
+        {modal && <BuildingModal openModal={setModal} {...building} />}
       </div>
     </div>
   );

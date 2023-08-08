@@ -30,9 +30,7 @@ export default function CompanyBuildings() {
             .map((filterItems) => {
               return (
                 <div key={filterItems._id}>
-                  <BuildingCard
-                    buildingProps={[filterItems.company, filterItems.building]}
-                  />
+                  <BuildingCard {...filterItems} />
                 </div>
               );
             })

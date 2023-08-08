@@ -1,8 +1,14 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useState } from "react";
 
-export default function BuildingModal({ openModal, buildingProps }) {
+export default function BuildingModal({ openModal, ...buildingProps }) {
+  let initialBuildingDetails = { ...buildingProps };
+
+  const [buildingDetails, setBuildingDetails] = useState(
+    initialBuildingDetails
+  );
   return (
     <div>
       <Modal
@@ -12,10 +18,10 @@ export default function BuildingModal({ openModal, buildingProps }) {
         }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>{buildingProps[1]}</Modal.Title>
+          <Modal.Title>{buildingDetails.building}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>{buildingProps[1]}</div>
+          <div>{buildingDetails.building}</div>
         </Modal.Body>
         <Modal.Footer>
           <Button
