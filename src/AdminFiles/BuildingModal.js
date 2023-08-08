@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 
 export default function BuildingModal({ openModal, ...buildingProps }) {
+  const _data_id = buildingProps._id;
   let initialBuildingDetails = {
     company: buildingProps.company,
     building: buildingProps.building,
@@ -34,6 +35,7 @@ export default function BuildingModal({ openModal, ...buildingProps }) {
   //submit changes
   const saveChanges = async (event) => {
     event.preventDefault();
+    console.log(_data_id);
     console.log(buildingDetails);
   };
 
