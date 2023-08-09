@@ -3,10 +3,26 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function DeleteBuildingModal({ openDeleteModal, name, _id }) {
-  const handleDelete = (event) => {
-    console.log(_id);
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/api/deleteBuilding", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: _id,
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.log(error);
+    }
     openDeleteModal(false);
   };
+
   return (
     <div>
       <Modal
