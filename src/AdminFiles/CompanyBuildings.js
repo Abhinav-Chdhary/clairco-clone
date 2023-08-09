@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import BuildingCard from "./BuildingCard";
+import { Button } from "react-bootstrap";
 
 export default function CompanyBuildings() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [buildings, setBuildings] = useState([]);
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
     const loadBuildings = async () => {
@@ -22,7 +28,12 @@ export default function CompanyBuildings() {
 
   return (
     <div className="m-5 text-primary fw-bold">
-      {id}'s Buildings
+      <div>
+        <Button className="btn btn-danger ms-3" onClick={goBack} role="button">
+          Back
+        </Button>
+      </div>
+      <div className="fs-3 text-primary">{id}'s Buildings</div>
       <div className="container">
         {buildings.length > 0 ? (
           buildings
