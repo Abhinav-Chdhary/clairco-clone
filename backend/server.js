@@ -32,6 +32,8 @@ app.use("/api", require("./Routes/AdminUpdateBuilding"));
 app.use("/api", require("./Routes/AdminDisplayCustomers"));
 //for buildings
 app.use("/api", require("./Routes/AdminDisplayBuildings"));
+//for deleting building
+app.use("/api", require("./Routes/AdminDeleteBuilding"));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
