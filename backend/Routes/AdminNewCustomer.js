@@ -29,8 +29,13 @@ router.post(
       });
       res.json({ success: true });
     } catch (err) {
-      console.log(err);
-      res.json({ success: false });
+      if (err.code === 11000) {
+        res
+          .status(400)
+          .json({ success: false, message: "duplicate key error" });
+      } else {
+        res.status(500).json({ success: false, message: "An error occured" });
+      }
     }
   }
 );

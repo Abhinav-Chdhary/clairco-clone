@@ -20,22 +20,38 @@ export default function NewCustomer() {
   };
   const handleDoneClick = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:5000/api/adminNewCustomer", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        company: customerDetails.CompanyName,
-        email: customerDetails.Email,
-        password: customerDetails.Password,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-    if (!json.success) console.log("ohh not working");
-    //after all go back to dashboard
-    navigate("/adminDashboard");
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/adminNewCustomer",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            company: customerDetails.CompanyName,
+            email: customerDetails.Email,
+            password: customerDetails.Password,
+          }),
+        }
+      );
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        //after all go back to dashboard
+        navigate("/adminDashboard");
+      } else {
+        throw new Error(json.message);
+      }
+    } catch (error) {
+      setcustomerDetails(initialCustomerDetails);
+      if (error.message === "duplicate key error") {
+        alert("This name already exists");
+        //console.log("This name already exists");
+      } else {
+        console.log("Some other error");
+      }
+    }
   };
   const handleCreateBuildingClick = (event) => {
     event.preventDefault();
