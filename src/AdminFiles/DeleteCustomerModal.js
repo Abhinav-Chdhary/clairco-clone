@@ -15,7 +15,7 @@ export default function DeleteCustomerModal({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: companyDetails.id,
+          id: companyDetails._id,
           company: companyDetails.company,
         }),
       });
@@ -25,6 +25,7 @@ export default function DeleteCustomerModal({
       console.log(error);
     }
     openDeleteModal(false);
+    window.location.reload();
   };
   return (
     <div>
