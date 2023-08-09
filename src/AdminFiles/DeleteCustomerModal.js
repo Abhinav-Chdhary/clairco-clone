@@ -2,7 +2,10 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function DeleteCustomerModal({ openDeleteModal }) {
+export default function DeleteCustomerModal({
+  openDeleteModal,
+  ...companyDetails
+}) {
   return (
     <div>
       <Modal
@@ -15,7 +18,11 @@ export default function DeleteCustomerModal({ openDeleteModal }) {
           <Modal.Title>Warning!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>Are you sure you want to delete customer permanently?</div>
+          <div>
+            Are you sure you want to delete{" "}
+            <strong> "{companyDetails.company}"</strong> and all it's buildings
+            permanently?
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button

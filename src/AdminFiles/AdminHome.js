@@ -28,7 +28,7 @@ export default function AdminHome() {
           customers.map((data) => {
             return (
               <div key={data._id}>
-                <CustomerCard companyname={data.company} />
+                <CustomerCard {...data} />
               </div>
             );
           })
