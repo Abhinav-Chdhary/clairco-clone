@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 export default function CreateWhat() {
   let navigate = useNavigate();
   const goBack = () => {
-    navigate(-1);
+    navigate("/adminDashboard");
   };
   return (
     <div className="d-flex flex-column">
