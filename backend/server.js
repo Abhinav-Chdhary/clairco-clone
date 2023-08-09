@@ -34,6 +34,8 @@ app.use("/api", require("./Routes/AdminDisplayCustomers"));
 app.use("/api", require("./Routes/AdminDisplayBuildings"));
 //for deleting building
 app.use("/api", require("./Routes/AdminDeleteBuilding"));
+//for deleting customer
+app.use("/api", require("./Routes/AdminDeleteCustomer"));
 
 app.get("/", (req, res) => {
   res.send("Hello World");

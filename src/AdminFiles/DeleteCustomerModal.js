@@ -6,6 +6,26 @@ export default function DeleteCustomerModal({
   openDeleteModal,
   ...companyDetails
 }) {
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/api/deleteCustomer", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: companyDetails.id,
+          company: companyDetails.company,
+        }),
+      });
+      const json = await response.json();
+      if (json.success) console.log(json);
+    } catch (error) {
+      console.log(error);
+    }
+    openDeleteModal(false);
+  };
   return (
     <div>
       <Modal
@@ -33,7 +53,9 @@ export default function DeleteCustomerModal({
           >
             No!
           </Button>
-          <Button variant="primary">Yes, I am.</Button>
+          <Button variant="primary" onClick={handleDelete}>
+            Yes, I am.
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
