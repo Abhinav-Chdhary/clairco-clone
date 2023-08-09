@@ -21,6 +21,7 @@ export default function DeleteBuildingModal({ openDeleteModal, name, _id }) {
       console.log(error);
     }
     openDeleteModal(false);
+    window.location.reload();
   };
 
   return (
