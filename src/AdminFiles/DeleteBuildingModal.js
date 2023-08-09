@@ -16,7 +16,7 @@ export default function DeleteBuildingModal({ openDeleteModal, name, _id }) {
         }),
       });
       const json = await response.json();
-      console.log(json);
+      if (!json.success) console.log("Bad request");
     } catch (error) {
       console.log(error);
     }
