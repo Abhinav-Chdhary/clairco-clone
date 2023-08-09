@@ -4,6 +4,7 @@ import DeleteBuildingModal from "./DeleteBuildingModal";
 
 export default function BuildingCard(props) {
   let buildingname = props.building;
+  const building_id = props._id;
   let building = props;
   const [modal, setModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -25,6 +26,7 @@ export default function BuildingCard(props) {
           <DeleteBuildingModal
             openDeleteModal={setDeleteModal}
             name={buildingname}
+            _id={building_id}
           />
         )}
         <button

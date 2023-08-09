@@ -2,7 +2,11 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function DeleteBuildingModal({ openDeleteModal, name }) {
+export default function DeleteBuildingModal({ openDeleteModal, name, _id }) {
+  const handleDelete = (event) => {
+    console.log(_id);
+    openDeleteModal(false);
+  };
   return (
     <div>
       <Modal
@@ -29,7 +33,9 @@ export default function DeleteBuildingModal({ openDeleteModal, name }) {
           >
             No!
           </Button>
-          <Button variant="primary">Yes, I am.</Button>
+          <Button variant="primary" onClick={handleDelete}>
+            Yes, I am.
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
