@@ -10,10 +10,15 @@ import CreateWhat from "./AdminFiles/CreateWhat";
 import NewBuilding from "./AdminFiles/NewBuilding";
 import NewCustomer from "./AdminFiles/NewCustomer";
 import CompanyBuildings from "./AdminFiles/CompanyBuildings";
+import CustomerDashboard from "./CustomerFiles/CustomerDashboard";
 
 function App() {
   const adminLoggedIn = () => {
     if (localStorage.getItem("adminAuthToken")) return true;
+    else return false;
+  };
+  const customerLoggedIn = () => {
+    if (localStorage.getItem("customerAuthToken")) return true;
     else return false;
   };
   return (
@@ -51,6 +56,11 @@ function App() {
             element={adminLoggedIn ? <CompanyBuildings /> : <HomeScreen />}
           />
           {/* CUSTOMER ROUTES */}
+          <Route
+            exact
+            path="/customerDashboard"
+            element={customerLoggedIn ? <CustomerDashboard /> : <HomeScreen />}
+          />
         </Routes>
       </div>
       <Footer />

@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CustomerLogin() {
+  let navigate = useNavigate();
   const [credentials, setcredentials] = useState({
     company: "",
     email: "",
@@ -25,6 +27,7 @@ export default function CustomerLogin() {
     if (!json.success) alert("Enter Valid credentials");
     else {
       localStorage.setItem("customerAuthToken", json.authToken);
+      navigate("/customerDashboard");
     }
   };
   const handleChange = (event) => {
