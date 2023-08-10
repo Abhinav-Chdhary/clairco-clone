@@ -12,12 +12,9 @@ import NewCustomer from "./AdminFiles/NewCustomer";
 import CompanyBuildings from "./AdminFiles/CompanyBuildings";
 import CustomerDashboard from "./CustomerFiles/CustomerDashboard";
 import AdminPrivateRoutes from "./util/AdminPrivateRoutes";
+import CustomerPrivateRoutes from "./util/CustomerPrivateRoutes";
 
 function App() {
-  const customerLoggedIn = () => {
-    if (localStorage.getItem("customerAuthToken")) return true;
-    else return false;
-  };
   return (
     <BrowserRouter>
       <div style={{ marginTop: "8rem", marginBottom: "6rem" }}>
@@ -51,11 +48,13 @@ function App() {
             />
           </Route>
           {/* CUSTOMER ROUTES */}
-          <Route
-            exact
-            path="/customerDashboard"
-            element={customerLoggedIn ? <CustomerDashboard /> : <HomeScreen />}
-          />
+          <Route element={<CustomerPrivateRoutes />}>
+            <Route
+              exact
+              path="/customerDashboard"
+              element={<CustomerDashboard />}
+            />
+          </Route>
         </Routes>
       </div>
       <Footer />
