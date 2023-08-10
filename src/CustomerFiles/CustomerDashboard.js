@@ -1,5 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function CustomerDashboard() {
-  return <div className="fs-1">CustomerDashboard</div>;
+  const [buildings, setBuildings] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    const loadBuildings = async () => {
+      let response = await fetch(
+        "http://localhost:5000/api/getCustomBuildings",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            companyname: id,
+          }),
+        }
+      );
+      response = await response.json();
+      setBuildings([...response]);
+    };
+    loadBuildings();
+  }, [id]);
+
+  return (
+    <div className="container">
+      {buildings.length > 0 ? (
+        buildings.map((data) => {
+          return <div key={data._id}>Something</div>;
+        })
+      ) : (
+        <div>No Buildings added</div>
+      )}
+    </div>
+  );
 }

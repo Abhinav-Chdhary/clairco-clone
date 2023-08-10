@@ -46,7 +46,7 @@ export default function CompanyBuildings() {
               );
             })
         ) : (
-          <div>......</div>
+          <div>No buildings added</div>
         )}
       </div>
     </div>
