@@ -11,12 +11,9 @@ import NewBuilding from "./AdminFiles/NewBuilding";
 import NewCustomer from "./AdminFiles/NewCustomer";
 import CompanyBuildings from "./AdminFiles/CompanyBuildings";
 import CustomerDashboard from "./CustomerFiles/CustomerDashboard";
+import AdminPrivateRoutes from "./util/AdminPrivateRoutes";
 
 function App() {
-  const adminLoggedIn = () => {
-    if (localStorage.getItem("adminAuthToken")) return true;
-    else return false;
-  };
   const customerLoggedIn = () => {
     if (localStorage.getItem("customerAuthToken")) return true;
     else return false;
@@ -30,31 +27,29 @@ function App() {
           <Route exact path="/adminLogin" element={<AdminLogin />} />
           <Route exact path="/customerLogin" element={<CustomerLogin />} />
           {/* ADMIN ROUTES */}
-          <Route
-            exact
-            path="/adminDashboard"
-            element={adminLoggedIn ? <AdminDashboard /> : <HomeScreen />}
-          />
-          <Route
-            exact
-            path="/adminDashboard/createWhat"
-            element={adminLoggedIn ? <CreateWhat /> : <HomeScreen />}
-          />
-          <Route
-            exact
-            path="/adminDashboard/newBuildingForm"
-            element={adminLoggedIn ? <NewBuilding /> : <HomeScreen />}
-          />
-          <Route
-            exact
-            path="/adminDashboard/newCustomerForm"
-            element={adminLoggedIn ? <NewCustomer /> : <HomeScreen />}
-          />
-          <Route
-            exact
-            path="/adminDashboard/companyBuildings/:id"
-            element={adminLoggedIn ? <CompanyBuildings /> : <HomeScreen />}
-          />
+          <Route element={<AdminPrivateRoutes />}>
+            <Route exact path="/adminDashboard" element={<AdminDashboard />} />
+            <Route
+              exact
+              path="/adminDashboard/createWhat"
+              element={<CreateWhat />}
+            />
+            <Route
+              exact
+              path="/adminDashboard/newBuildingForm"
+              element={<NewBuilding />}
+            />
+            <Route
+              exact
+              path="/adminDashboard/newCustomerForm"
+              element={<NewCustomer />}
+            />
+            <Route
+              exact
+              path="/adminDashboard/companyBuildings/:id"
+              element={<CompanyBuildings />}
+            />
+          </Route>
           {/* CUSTOMER ROUTES */}
           <Route
             exact
