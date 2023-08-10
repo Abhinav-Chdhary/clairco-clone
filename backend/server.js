@@ -39,6 +39,8 @@ app.use("/api", require("./Routes/AdminDeleteCustomer"));
 //----customer routes----
 //for customer login
 app.use("/api", require("./RoutesC/CustomerLogin"));
+//for customer buildings display
+app.use("/api", require("./RoutesC/CustomerDisplayBuildings"));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
