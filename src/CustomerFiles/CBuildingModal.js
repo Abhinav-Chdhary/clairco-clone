@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -17,6 +17,34 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
     temperature: buildingProps.temperature,
     humidity: buildingProps.humidity,
   };
+  const latLong = buildingDetails.geolocation.split(",");
+  //format is DD
+  let lat = parseFloat(latLong[0]);
+  let lon = parseFloat(latLong[1].trim());
+  const loadData = async () => {
+    try {
+      let response = await fetch(
+        `https://air-quality-by-api-ninjas.p.rapidapi.com/v1/airquality?lat=${lat}&lon=${lon}`,
+        {
+          method: "GET",
+          headers: {
+            "X-RapidAPI-Key":
+              "96c6d1bb3emsh36e1c6665ba1936p1902bdjsn80a504f557e1",
+            "X-RapidAPI-Host": "air-quality-by-api-ninjas.p.rapidapi.com",
+          },
+        }
+      );
+      response = await response.json();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <div>
       <Modal
@@ -26,7 +54,10 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
         }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>{buildingDetails.building}</Modal.Title>
+          <Modal.Title>
+            {buildingDetails.building}
+            {console.log(latLong[0] + "-" + latLong[1].trim())}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="building-details">

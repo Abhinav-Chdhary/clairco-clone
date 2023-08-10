@@ -27,6 +27,7 @@ export default function CustomerDashboard() {
 
   return (
     <div className="container">
+      <div className="fs-3 fw-bold text-success">{id}</div>
       {buildings.length > 0 ? (
         buildings.map((data) => {
           return (
