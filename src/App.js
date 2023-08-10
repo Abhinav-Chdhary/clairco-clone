@@ -51,7 +51,7 @@ function App() {
           <Route element={<CustomerPrivateRoutes />}>
             <Route
               exact
-              path="/customerDashboard"
+              path="/customerDashboard/:id"
               element={<CustomerDashboard />}
             />
           </Route>

@@ -27,7 +27,7 @@ export default function CustomerLogin() {
     if (!json.success) alert("Enter Valid credentials");
     else {
       localStorage.setItem("customerAuthToken", json.authToken);
-      navigate("/customerDashboard");
+      navigate(`/customerDashboard/${credentials.company}`);
     }
   };
   const handleChange = (event) => {
