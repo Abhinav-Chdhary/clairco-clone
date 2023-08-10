@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import CBuildingCard from "./CBuildingCard";
 
 export default function CustomerDashboard() {
   const [buildings, setBuildings] = useState([]);
@@ -28,7 +29,11 @@ export default function CustomerDashboard() {
     <div className="container">
       {buildings.length > 0 ? (
         buildings.map((data) => {
-          return <div key={data._id}>Something</div>;
+          return (
+            <div key={data._id}>
+              <CBuildingCard {...data} />{" "}
+            </div>
+          );
         })
       ) : (
         <div>No Buildings added</div>
