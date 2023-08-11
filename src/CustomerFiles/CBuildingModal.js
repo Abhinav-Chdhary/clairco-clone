@@ -19,6 +19,7 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
   };
   const latLong = buildingDetails.geolocation.split(",");
   const [displayData, setDisplayData] = useState({});
+  const [weatherData, setWeatherData] = useState({});
   //format is DD
   let lat = parseFloat(latLong[0]);
   let lon = parseFloat(latLong[1].trim());
@@ -46,10 +47,34 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
         console.log(error);
       }
     };
+    const loadWeatherData = async () => {
+      try {
+        let response = await fetch(
+          `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?lat=${lat}&lon=${lon}`,
+          {
+            method: "GET",
+            headers: {
+              "X-RapidAPI-Key":
+                "96c6d1bb3emsh36e1c6665ba1936p1902bdjsn80a504f557e1",
+              "X-RapidAPI-Host": "weather-by-api-ninjas.p.rapidapi.com",
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((weatherData) => setWeatherData(weatherData))
+          .catch((error) => console.error("Error fetching data:", error));
+        //response = await response.json();
+        // console.log(response.CO);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     loadData();
+    loadWeatherData();
     const intervalId = setInterval(() => {
       console.log("I loaded");
       loadData();
+      loadWeatherData();
     }, 60000);
 
     return () => {
@@ -116,6 +141,18 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
                   <div>
                     <strong>CO: </strong>
                     {displayData["CO"]?.concentration}
+                  </div>
+                )}
+                {buildingDetails.temperature && (
+                  <div>
+                    <strong>temp: </strong>
+                    {weatherData["temp"]}
+                  </div>
+                )}
+                {buildingDetails.humidity && (
+                  <div>
+                    <strong>humidity: </strong>
+                    {weatherData["humidity"]}
                   </div>
                 )}
               </div>
