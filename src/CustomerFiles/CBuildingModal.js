@@ -72,12 +72,17 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
           <div className="building-details">
             {Object.entries(buildingDetails).map(([key, value]) => (
               <div key={key}>
-                <strong>{key.replace(/_/g, " ")}</strong>: <span>{value}</span>
+                {typeof value === "boolean" ? (
+                  <></>
+                ) : (
+                  <span>
+                    <strong>{key.replace(/_/g, " ")}</strong>: {value}
+                  </span>
+                )}
               </div>
             ))}
           </div>
-          {buildingDetails.has_device ? <div>YES</div> : <div>NO</div>}
-          <div>
+          {/* <div>
             {buildingDetails.has_device ? (
               displayData &&
               Object.keys(displayData).map((key) => (
@@ -85,9 +90,35 @@ export default function CBuildingModal({ openModal, ...buildingProps }) {
                   <p>
                     {key} Conc: {displayData[key].concentration}
                   </p>
-                  {/* <p>AQI: {displayData[key].aqi}</p> */}
+                  <p>AQI: {displayData[key].aqi}</p>
                 </div>
               ))
+            ) : (
+              <div>....</div>
+            )}
+          </div> */}
+          <div>
+            {buildingDetails.has_device ? (
+              <div>
+                {buildingDetails.pm_2_5 && (
+                  <div>
+                    <strong>PM 2.5: </strong>
+                    {displayData["PM2.5"]?.concentration}
+                  </div>
+                )}
+                {buildingDetails.pm_10 && (
+                  <div>
+                    <strong>PM 10: </strong>
+                    {displayData["PM10"]?.concentration}
+                  </div>
+                )}
+                {buildingDetails.co2 && (
+                  <div>
+                    <strong>CO: </strong>
+                    {displayData["CO"]?.concentration}
+                  </div>
+                )}
+              </div>
             ) : (
               <div>....</div>
             )}
