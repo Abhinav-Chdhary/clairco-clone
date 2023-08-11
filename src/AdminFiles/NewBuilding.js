@@ -106,7 +106,7 @@ export default function NewBuilding() {
           <input
             type="text"
             className="form-control"
-            placeholder="37.7749, 37.7749"
+            placeholder="37.7749, 37.7749 (DD format only plz)"
             name="Geolocation"
             value={buildingDetails.Geolocation}
             onChange={onBuildingDetailsChange}
